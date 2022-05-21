@@ -22,7 +22,8 @@
 
 /* MAIN */
 body {
-    background-color: var(--dark-blue1);    
+    background-color: var(--dark-blue1);   
+    position: relative;
 }
 
 header {
@@ -49,6 +50,7 @@ h1 {
 
 h2 {
     padding: 3px 10px;
+    color: var(--light-green);
 }
 
 h3 {
@@ -107,8 +109,6 @@ p {
 
 /* POSTS */
 article {
-    /* display: flex;
-    justify-content: space-between; */
     margin: 12px 40px;
 
 }
@@ -128,10 +128,15 @@ article {
     border-radius: 6px;
 }
 
+form {
+    margin: 12px 40px;
+    width: 100%;
+}
+
 /* FOOTER */
 footer {
-    display: flex;
-    justify-content: center;
+    /* display: flex;
+    justify-content: center; */
     position: absolute;
     bottom: 0;
     width: 100%;
