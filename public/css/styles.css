@@ -1,0 +1,139 @@
+/*Universal Selector*/
+* {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    list-style-type: none;
+    text-decoration: none;    
+  }
+/* COLORS */
+:root {
+    --dark-blue1: #10162F;
+    --dark-blue2: #141C3A;
+    --light-blue: #2D5DCC;
+    --light-green: #4FE0B0;
+    --light-yellow: #FFD300;
+    --brigth-red: #FF1E0D;
+    --white: #fff;
+    --light-grey: #707382;
+    --black: #333;
+}
+
+/* MAIN */
+body {
+    background-color: var(--dark-blue1);    
+}
+
+header {
+    width: 100%;
+    background-color: var(--dark-blue1);
+    padding: 21px;
+    border-bottom: solid 1px var(--light-blue);
+    border-top: solid 3px var(--light-blue);
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/*  */
+h1 {
+    color: var(--light-green);
+    height: 32px;
+    padding: 21px;
+}
+
+h2 {
+    padding: 3px 10px;
+}
+
+h3 {
+    padding: 3px 3px;
+}
+
+p {
+    color: var(--white);
+    padding: 6px 10px;
+}
+
+
+/* BUTTONS */
+.button {
+    border-radius: 6px;
+    border: none;
+    padding: 6px 15px;
+    margin: 0px 10px;
+}
+
+.primary {
+    background-color: var(--light-yellow);
+    color: var(--white);
+}
+
+.primary:hover {
+    background-color: var(--light-blue);
+}
+
+.secondary {
+    background-color: var(--light-green);
+    color: var(--white);
+}
+
+.secondary:hover {
+    background-color: var(--light-blue);
+}
+
+.tertiary {
+    background-color: var(--light-grey);
+    color: var(--white);
+}
+
+.tertiary:hover {
+    background-color: var(--brigth-red);
+}
+
+/* LINKS */
+.link {
+    color: var(--light-green);
+}
+
+.link:hover {
+    color: var(--light-blue);
+}
+
+/* POSTS */
+article {
+    /* display: flex;
+    justify-content: space-between; */
+    margin: 12px 40px;
+
+}
+
+.post-header {
+    color: var(--light-green);
+    display: flex;
+}
+
+.post-header-space {
+    display: flex;
+    justify-content: space-between;
+}
+
+.post-content {
+    border: solid 1px var(--light-blue);
+    border-radius: 6px;
+}
+
+/* FOOTER */
+footer {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 21px;
+}
