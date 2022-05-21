@@ -10,10 +10,15 @@
 <body>
     <header>
         <nav>
+            {{#if loggedIn}}
             <a href="/">HOME</a>
             <a href="/dashboard">DASHBOARD</a>
             <a href="dashboard/create">NEW POST</a>
             <a href="/">LOGOUT</a>
+            {{else}}
+            <a href="/">HOME</a>
+            <a href="/login">LOGIN</a>
+            {{/if}}
         </nav>
     </header>
     <main>
