@@ -1,8 +1,9 @@
 const { Model, DataTypes } = require("sequalize");
 const sequalize = require("../config/connection");
-const bcrypt = require("bycrypt");
+const bcrypt = require("bcrypt");
 
 class User extends Model {
+  // Check password method on model
   checkPassword(loginPw) {
     return bcrypt.compareSync(loginPw, this.password);
   }
