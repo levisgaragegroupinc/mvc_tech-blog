@@ -60,3 +60,16 @@ router.get("/:id", async (req, res) => {
 });
 
 module.exports = router;
+
+// CREATE NEW USER
+router.post("/", (req, res) => {
+  try {
+const newUserRequest = req.body;
+newUserRequest.password = await bcrypt.has(req.body.password, 10);
+    const newUser = await User.create(newUser);
+    res.render('nameoftemplate_here');
+  } catch (error) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
