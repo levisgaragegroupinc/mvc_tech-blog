@@ -12,7 +12,9 @@ router.get("/", async (req, res) => {
         },
       ],
     });
-
+    if (!allCommentData) {
+      res.status(404).json({ message: `No comments found.` });
+    }
     const comments = allCommentData.map((comment) => {
       comment.get({ plain: true });
     });

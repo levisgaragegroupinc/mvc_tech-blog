@@ -17,6 +17,9 @@ router.get("/", async (req, res) => {
         },
       ],
     });
+    if (!allPostData) {
+      res.status(404).json({ message: `No posts found.` });
+    }
     const posts = allPostData.map((post) => {
       post.get({ plain: true });
     });
