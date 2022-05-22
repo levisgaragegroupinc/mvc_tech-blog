@@ -65,3 +65,5 @@ router.delete("/:id", async (req, res) => {
     res.status(200).json(commentData);
   } catch (error) {}
 });
+
+module.exports = router;
