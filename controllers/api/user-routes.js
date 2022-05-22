@@ -21,3 +21,42 @@ router.get("/", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+// GET SINGLE USER BY ID
+router.get("/:id", async (req, res) => {
+  try {
+    const userData = await User.findByPk({
+      attributes: { exclude: ["password"] },
+      where: {
+        id: req.params.id,
+      },
+      include: [
+        {
+          model: Post,
+          attributes: ["id", "title", "post_txt", "created_at"],
+        },
+        {
+          model: Comment,
+          attributes: ["id", "comment_txt", "created_at"],
+          include: {
+            model: Post,
+            attributes: ["title"],
+          },
+        },
+      ],
+    });
+    if (!userData) {
+      res
+        .status(404)
+        .json({ message: `No user with ID ${req.params.id} found.` });
+    }
+    res.render("nameoftemplate_here", {
+      postData,
+    });
+  } catch (error) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+module.exports = router;
