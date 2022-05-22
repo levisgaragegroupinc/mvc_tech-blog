@@ -114,3 +114,21 @@ router.put("/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+// DELETE POST
+router.delete("/:id", async (req, res) => {
+  try {
+    const postData = await Post.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+    if (!postData) {
+      res
+        .status(404)
+        .json({ message: `No post found with id: ${req.params.id}` });
+    }
+    res.render("nameoftemplate_here");
+    res.status(200).json(postData);
+  } catch (error) {}
+});
