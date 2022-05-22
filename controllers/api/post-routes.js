@@ -1,5 +1,4 @@
 const router = require("express").Router();
-const { runInNewContext } = require("vm");
 const { Post, User, Comment } = require("../../models");
 
 // GET ALL POSTS ROUTE
