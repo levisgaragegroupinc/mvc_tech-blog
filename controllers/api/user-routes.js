@@ -22,7 +22,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// GET SINGLE USER BY ID
+// GET SINGLE USER BY ID ROUTE
 router.get("/:id", async (req, res) => {
   try {
     const userData = await User.findByPk({
@@ -61,7 +61,7 @@ router.get("/:id", async (req, res) => {
 
 module.exports = router;
 
-// CREATE NEW USER
+// CREATE NEW USER ROUTE
 router.post("/", (req, res) => {
   try {
 const newUserRequest = req.body;
@@ -73,3 +73,33 @@ newUserRequest.password = await bcrypt.has(req.body.password, 10);
     res.status(500).json(err);
   }
 });
+
+// USER LOGIN ROUTE
+router.post('/login', async (req, res) => {
+    try {
+      const userData = await User.findOne({ where: { username: req.body.username } });
+      if (!userData) {
+        res.status(404).json({ message: 'Login failed. Please try again!' });
+        return;
+      }
+      const validPassword = await bcrypt.compare(
+        req.body.password,
+        userData.password
+      );
+      if (!validPassword) {
+        res.status(400).json({ message: 'Login failed. Please try again!' });
+        return;
+      }
+      req.session.save(() => {
+          req.session.user_id = userData.id;
+          req.session.username = userData.username;
+          req.session.loggedIn = true;
+      });
+        res.render('nameoftemplate_here');
+        res.status(200).json({ user: userData, message: 'You are now logged in!' });
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+
+  module.exports = router;

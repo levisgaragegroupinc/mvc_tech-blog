@@ -32,7 +32,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// GET SINGLE POST BY ID
+// GET SINGLE POST BY ID ROUTE
 router.get("/:id", async (req, res) => {
   try {
     const postData = await Post.findByPk({
@@ -65,7 +65,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// CREATE NEW POST
+// CREATE NEW POST ROUTE
 router.put("/", async (req, res) => {
   if (req.session) {
     try {
@@ -85,7 +85,7 @@ router.put("/", async (req, res) => {
   }
 });
 
-// UPDATE POST
+// UPDATE POST ROUTE
 router.put("/:id", async (req, res) => {
   try {
     const updatePost = await Post.update(
@@ -114,7 +114,7 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-// DELETE POST
+// DELETE POST ROUTE
 router.delete("/:id", async (req, res) => {
   try {
     const postData = await Post.destroy({
