@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const { runInNewContext } = require("vm");
 const { Post, User, Comment } = require("../../models");
 
 // GET ALL POSTS ROUTE
@@ -56,9 +57,57 @@ router.get("/:id", async (req, res) => {
         .status(404)
         .json({ message: `No post with ID ${req.params.id} found.` });
     }
-
     res.render("nameoftemplate_here", {
       postData,
+    });
+  } catch (error) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+// CREATE NEW POST
+router.put("/", async (req, res) => {
+  if (req.session) {
+    try {
+      const newPost = await Post.create({
+        title: req.body.title,
+        post_txt: req.body.post_txt,
+        user_id: req.session.user_id,
+      });
+      res.render("nameoftemplate_here", {
+        newPost,
+        loggedIn: req.session.loggedIn,
+      });
+    } catch (error) {
+      console.log(err);
+      res.status(500).json(err);
+    }
+  }
+});
+
+// UPDATE POST
+router.put("/:id", async (req, res) => {
+  try {
+    const updatePost = await Post.update(
+      {
+        title: req.body.title,
+        post_txt: req.body.post_txt,
+      },
+      {
+        where: {
+          id: req.params.id,
+        },
+      }
+    );
+    if (!updatePost) {
+      res
+        .status(404)
+        .json({ message: `No post found with id: ${req.params.id}` });
+    }
+    res.render("nameoftemplate_here", {
+      updatePost,
+      loggedIn: req.session.loggedIn,
     });
   } catch (error) {
     console.log(err);
