@@ -62,7 +62,7 @@ router.delete("/:id", async (req, res) => {
         .json({ message: `No comment found with id: ${req.params.id}` });
     }
     res.render("nameoftemplate_here");
-    res.status(200).json(commentData);
+    // res.status(200).json(commentData);
   } catch (error) {}
 });
 
