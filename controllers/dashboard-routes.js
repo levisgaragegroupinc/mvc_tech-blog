@@ -4,7 +4,7 @@ const { Post, User, Comment } = require("../models");
 const sequelize = require("../config/connection");
 const withAuth = require("../../utils/auth");
 
-// GET ALL POSTS AND RENDER
+// GET ALL POSTS AND DASHBOARD RENDER
 router.get("/", withAuth, async (req, res) => {
   try {
     const allUserPosts = await Post.findAll({
@@ -36,7 +36,7 @@ router.get("/", withAuth, async (req, res) => {
   }
 });
 
-// GET ONE POST AND RENDER
+// GET ONE POST EDIT FORM AND RENDER
 router.get("/edit/:id", withAuth, async (req, res) => {
   try {
     const postData = await Post.findByPk({
@@ -72,6 +72,9 @@ router.get("/edit/:id", withAuth, async (req, res) => {
   }
 });
 
-// GET CREATE NEW POST AND RENDER
+// GET CREATE NEW POST FORM AND RENDER
+router.get("/new", withAuth, async (req, res) => {
+  res.render("addnewpost_template");
+});
 
 module.exports = router;
