@@ -13,9 +13,7 @@ router.get("/", async (req, res) => {
     const users = allUsersData.map((user) => {
       user.get({ plain: true });
     });
-    res.render("nameoftemplate_here", {
-      users,
-    });
+    res.status(200).json(users);
   } catch (error) {
     console.log(err);
     res.status(500).json(err);
@@ -50,16 +48,12 @@ router.get("/:id", async (req, res) => {
         .status(404)
         .json({ message: `No user with ID ${req.params.id} found.` });
     }
-    res.render("nameoftemplate_here", {
-      postData,
-    });
+    res.status(200).json(userData);
   } catch (error) {
     console.log(err);
     res.status(500).json(err);
   }
 });
-
-module.exports = router;
 
 // CREATE NEW USER ROUTE
 router.post("/", (req, res) => {
@@ -67,7 +61,7 @@ router.post("/", (req, res) => {
 const newUserRequest = req.body;
 newUserRequest.password = await bcrypt.has(req.body.password, 10);
     const newUser = await User.create(newUser);
-    res.render('nameoftemplate_here');
+    res.status(200).json(newUser)
   } catch (error) {
     console.log(err);
     res.status(500).json(err);
@@ -95,8 +89,7 @@ router.post('/login', async (req, res) => {
           req.session.username = userData.username;
           req.session.loggedIn = true;
       });
-        res.render('nameoftemplate_here');
-        res.status(200).json({ user: userData, message: 'You are now logged in!' });
+      res.status(200).json({ user: userData, message: 'You are now logged in!' });
     } catch (err) {
       res.status(500).json(err);
     }
@@ -126,7 +119,6 @@ router.delete("/:id", async (req, res) => {
           .status(404)
           .json({ message: `No user found with id: ${req.params.id}` });
       }
-      res.render("nameoftemplate_here");
       res.status(200).json(userData);
     } catch (error) {}
   });

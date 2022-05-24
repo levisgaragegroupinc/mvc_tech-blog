@@ -18,10 +18,7 @@ router.get("/", async (req, res) => {
     const comments = allCommentData.map((comment) => {
       comment.get({ plain: true });
     });
-    res.render("nameoftemplate_here", {
-      comments,
-      loggedIn: req.session.loggedIn,
-    });
+    res.status(200).json(comments);
   } catch (error) {
     console.log(err);
     res.status(500).json(err);
@@ -37,10 +34,7 @@ router.post("/", async (req, res) => {
         post_id: req.body.post_id,
         user_id: req.body.session.user_id,
       });
-      res.render("nameoftemplate_here", {
-        newComment,
-        loggedIn: req.session.loggedIn,
-      });
+      res.status(200).json(newComment);
     } catch (error) {
       console.log(err);
       res.status(500).json(err);
@@ -61,8 +55,7 @@ router.delete("/:id", async (req, res) => {
         .status(404)
         .json({ message: `No comment found with id: ${req.params.id}` });
     }
-    res.render("nameoftemplate_here");
-    // res.status(200).json(commentData);
+    res.status(200).json(commentData);
   } catch (error) {}
 });
 

@@ -23,9 +23,7 @@ router.get("/", async (req, res) => {
     const posts = allPostData.map((post) => {
       post.get({ plain: true });
     });
-    res.render("nameoftemplate_here", {
-      posts,
-    });
+    res.status(200).json(posts);
   } catch (error) {
     console.log(err);
     res.status(500).json(err);
@@ -56,9 +54,7 @@ router.get("/:id", async (req, res) => {
         .status(404)
         .json({ message: `No post with ID ${req.params.id} found.` });
     }
-    res.render("nameoftemplate_here", {
-      postData,
-    });
+    res.status(200).json(postData);
   } catch (error) {
     console.log(err);
     res.status(500).json(err);
@@ -74,10 +70,7 @@ router.put("/", async (req, res) => {
         post_txt: req.body.post_txt,
         user_id: req.session.user_id,
       });
-      res.render("nameoftemplate_here", {
-        newPost,
-        loggedIn: req.session.loggedIn,
-      });
+      res.status(200).json(newPost);
     } catch (error) {
       console.log(err);
       res.status(500).json(err);
@@ -104,10 +97,7 @@ router.put("/:id", async (req, res) => {
         .status(404)
         .json({ message: `No post found with id: ${req.params.id}` });
     }
-    res.render("nameoftemplate_here", {
-      updatePost,
-      loggedIn: req.session.loggedIn,
-    });
+    res.status(200).json(updatePost);
   } catch (error) {
     console.log(err);
     res.status(500).json(err);
@@ -127,7 +117,6 @@ router.delete("/:id", async (req, res) => {
         .status(404)
         .json({ message: `No post found with id: ${req.params.id}` });
     }
-    res.render("nameoftemplate_here");
     res.status(200).json(postData);
   } catch (error) {}
 });
