@@ -45,6 +45,13 @@ router.get("/login", (req, res) => {
 });
 
 // GET SIGNUP AND RENDER SIGNUP
+router.get("/signup", (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect("/");
+    return;
+  }
+  res.render("signuptemplate_name");
+});
 
 // GET ONE POST BY ID AND RENDER SINGLE POST
 
