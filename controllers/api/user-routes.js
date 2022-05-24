@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { Post, User, Comment } = require("../../models");
+const withAuth = require("../../utils/auth");
 
 // GET ALL USERS ROUTE
 router.get("/", async (req, res) => {
@@ -94,6 +95,8 @@ router.post('/login', async (req, res) => {
       res.status(500).json(err);
     }
   });
+
+// USER UPDATE ROUTE
 
 // USER LOGOUT ROUTE
 router.post('/logout', (req, res) => {
