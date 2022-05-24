@@ -36,6 +36,13 @@ router.get("/", async (req, res) => {
 });
 
 // GET LOGIN AND RENDER LOGIN
+router.get("/login", (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect("/");
+    return;
+  }
+  res.render("logintemplate_name");
+});
 
 // GET SIGNUP AND RENDER SIGNUP
 
