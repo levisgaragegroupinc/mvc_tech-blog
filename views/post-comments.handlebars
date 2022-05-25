@@ -13,14 +13,4 @@
     </div>
     <p class="post-content">{{post_txt}}</p>
 </article>
-{{#each this}}
-<div class="post-header-space">
-    <div class="post-header">
-        <h2>{{user.username}}</h2>
-    </div> 
-    <div class="post-header">
-        <h2>{{format_time created_at}}</h2>
-    </div>
-<p class="post-content">{{comment_txt}}</p>
-</div>
-{{/each}}
+{{> post-comments-details}}
