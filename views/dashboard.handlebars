@@ -1,1 +1,7 @@
 <h1 class="page-title">YOUR DASHBOARD</h1>
+<div>
+    <a href="/new" class="button secondary">NEW POST</a>
+</div>
+{{#each posts as |post|}}
+{{>post-details}}
+{{/each}}

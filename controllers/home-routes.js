@@ -40,7 +40,7 @@ router.get("/login", (req, res) => {
     res.redirect("/");
     return;
   }
-  res.render("logintemplate_name");
+  res.render("login");
 });
 
 // GET SIGNUP AND RENDER SIGNUP
@@ -49,7 +49,7 @@ router.get("/signup", (req, res) => {
     res.redirect("/");
     return;
   }
-  res.render("signuptemplate_name");
+  res.render("signup");
 });
 
 // GET ONE POST BY ID AND RENDER SINGLE POST
@@ -77,7 +77,7 @@ router.get("/post/:id", async (req, res) => {
         .json({ message: `No post with ID ${req.params.id} found.` });
     }
     const post = postData.get({ plain: true });
-    res.render("singleposttemplate_name", {
+    res.render("post-comments", {
       post,
       loggedIn: req.session.loggedIn,
     });
