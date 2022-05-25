@@ -43,4 +43,4 @@ Comment.init(
   }
 );
 
-module.exports = router;
+module.exports = Comment;
