@@ -24,7 +24,7 @@ router.get("/", async (req, res) => {
     const posts = allPostData.map((post) => {
       post.get({ plain: true });
     });
-    res.render("homepagetemplate_name", {
+    res.render("homepage", {
       posts,
       loggedIn: req.session.loggedIn,
     });
