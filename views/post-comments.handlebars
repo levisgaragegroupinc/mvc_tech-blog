@@ -1,6 +1,3 @@
-<div>
-    <a href="/" class="button secondary">NEW COMMENT</a>
-</div>
 <article>
     <div class="post-header-space">
         <div class="post-header">
@@ -17,3 +14,20 @@
     <p class="post-content">{{post_txt}}</p>
 </article>
 {{> post-comments-details}}
+
+{{#if loggedIn}}
+<div>
+    <form class="new-comment-form">
+        <h1>NEW COMMENT</h1>
+        <div class="form-input">
+            <label for='comment' class="pad1">Enter Comments</label>
+            <textarea type="text" id='comment' name="comments" rows='2' class="pad2"></textarea>
+        </div>
+        <div class="pad5">
+            <button type="submit" class="button secondary">SUBMIT</button>
+             <a href="/"><button type="submit" class="button tertiary">CANCEL</button></a>
+        </div>
+    </form>
+</div>
+<script src="../public/js/comments.js"></script>
+{{/if}}
