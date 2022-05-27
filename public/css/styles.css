@@ -140,6 +140,13 @@ article {
     border-radius: 6px;
 }
 
+/* COMMENTS */
+textarea {
+    resize: none;
+}
+
+
+
 /* FORM STYLES */
 
 form {
