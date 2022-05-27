@@ -62,7 +62,7 @@ router.get("/edit/:id", withAuth, async (req, res) => {
     }
     const post = postData.get({ plain: true });
 
-    res.render("editposttemplate_name", {
+    res.render("edit-post", {
       post,
       loggedIn: true,
     });
@@ -74,7 +74,7 @@ router.get("/edit/:id", withAuth, async (req, res) => {
 
 // GET CREATE NEW POST FORM AND RENDER
 router.get("/new", withAuth, async (req, res) => {
-  res.render("addnewpost_template");
+  res.render("new-post");
 });
 
 module.exports = router;
