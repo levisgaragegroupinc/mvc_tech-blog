@@ -1,4 +1,13 @@
 {
+"name": "mvc-tech blog",
+"version": "",
+"description": "",
+"main": "server.js",
+
+"scripts": {
+  "start": "node server.js",
+  "seed:": "node seeds/index.js"
+},
   "dependencies": {
     "bcrypt": "^5.0.1",
     "connect-session-sequelize": "^7.1.3",
