@@ -14,7 +14,7 @@
             {{#if loggedIn}}
             <a href="/" class="button primary">HOME</a>
             <a href="/dashboard" class="button primary">DASHBOARD</a>
-            <a href="/" class="button tertiary">LOGOUT</a>
+            <a href="/" class="button tertiary" id="logout">LOGOUT</a>
             {{else}}
             <a href="/" class="button primary">HOME</a>
              <a href="/login" class="button secondary">LOGIN</a>
@@ -24,11 +24,11 @@
     <main>
         {{{ body }}}
     </main>
-{{#if loggedIn}}
-<script src="../../public/js/logout.js"
-
     <footer>
         <a href="/" class="link">HOME</a>
     </footer>
+    {{#if loggedIn}}
+    <script src="../../public/js/logout.js"
+    {{/if}}
 </body>
 </html>
