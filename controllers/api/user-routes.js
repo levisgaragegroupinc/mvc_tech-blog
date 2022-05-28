@@ -2,7 +2,7 @@ const router = require("express").Router();
 const { Post, User, Comment } = require("../../models");
 const withAuth = require("../../utils/auth");
 
-// GET ALL USERS ROUTE
+// GET ALL USERS ROUTE. /api/users
 router.get("/", async (req, res) => {
   try {
     const allUsersData = await User.findAll({
@@ -21,7 +21,26 @@ router.get("/", async (req, res) => {
   }
 });
 
-// GET SINGLE USER BY ID ROUTE
+// TEST ALL USERS ROUTE
+// router.get("/", async (req, res) => {
+//   try {
+//     const allUsersData = await User.findAll({
+//       attributes: { exclude: ["password"] },
+//     });
+//     if (!allUsersData) {
+//       res.status(404).json({ message: `No users found.` });
+//     }
+//     // const users = allUsersData.map((user) => {
+//     //   user.get({ plain: true });
+//     // });
+//     res.status(200).json(allUsersData);
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500).json(error);
+//   }
+// });
+
+// GET SINGLE USER BY ID ROUTE. /api/users/1
 router.get("/:id", async (req, res) => {
   try {
     const userData = await User.findByPk({
@@ -56,7 +75,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// CREATE NEW USER ROUTE
+// CREATE NEW USER ROUTE /api/users
 router.post("/", async (req, res) => {
   try {
     const newUser = await User.create({
