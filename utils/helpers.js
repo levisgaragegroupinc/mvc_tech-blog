@@ -1,6 +1,6 @@
 module.exports = {
-  format_time: (date) => {
+  format_date: (date) => {
     // 'toLocaleTimeString()' formats the time as H:MM:SS AM/PM
-    return date.toLocaleTimeString();
+    return date.toLocaleDateString();
   },
 };
