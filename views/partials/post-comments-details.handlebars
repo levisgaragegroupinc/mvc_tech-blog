@@ -4,7 +4,8 @@
         <h2>{{user.username}}</h2>
     </div> 
     <div class="post-header">
-        <h2>{{format_time created_at}}</h2>
+        {{!-- <h2>{{format_date created_at}}</h2> --}}
+         <h2>{{created_at}}</h2>
     </div>
 <p class="post-content">{{comment_txt}}</p>
 </div>
