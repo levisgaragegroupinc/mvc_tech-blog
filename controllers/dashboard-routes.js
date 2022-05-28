@@ -31,8 +31,8 @@ router.get("/", withAuth, async (req, res) => {
     });
     res.render("dashboard", { userPosts, loggedIn: true });
   } catch (error) {
-    console.log(err);
-    res.status(500).json(err);
+    console.log(error);
+    res.status(500).json(error);
   }
 });
 
@@ -67,8 +67,8 @@ router.get("/edit/:id", withAuth, async (req, res) => {
       loggedIn: true,
     });
   } catch (error) {
-    console.log(err);
-    res.status(500).json(err);
+    console.log(error);
+    res.status(500).json(error);
   }
 });
 

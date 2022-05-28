@@ -26,8 +26,8 @@ router.get("/", async (req, res) => {
     });
     res.status(200).json(posts);
   } catch (error) {
-    console.log(err);
-    res.status(500).json(err);
+    console.log(error);
+    res.status(500).json(error);
   }
 });
 
@@ -57,8 +57,8 @@ router.get("/:id", async (req, res) => {
     }
     res.status(200).json(postData);
   } catch (error) {
-    console.log(err);
-    res.status(500).json(err);
+    console.log(error);
+    res.status(500).json(error);
   }
 });
 
@@ -73,8 +73,8 @@ router.put("/", withAuth, async (req, res) => {
       });
       res.status(200).json(newPost);
     } catch (error) {
-      console.log(err);
-      res.status(500).json(err);
+      console.log(error);
+      res.status(500).json(error);
     }
   }
 });
@@ -100,8 +100,8 @@ router.put("/:id", withAuth, async (req, res) => {
     }
     res.status(200).json(updatePost);
   } catch (error) {
-    console.log(err);
-    res.status(500).json(err);
+    console.log(error);
+    res.status(500).json(error);
   }
 });
 
@@ -119,7 +119,10 @@ router.delete("/:id", withAuth, async (req, res) => {
         .json({ message: `No post found with id: ${req.params.id}` });
     }
     res.status(200).json(postData);
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(error);
+  }
 });
 
 module.exports = router;

@@ -16,8 +16,8 @@ router.get("/", async (req, res) => {
     });
     res.status(200).json(users);
   } catch (error) {
-    console.log(err);
-    res.status(500).json(err);
+    console.log(error);
+    res.status(500).json(error);
   }
 });
 
@@ -51,8 +51,8 @@ router.get("/:id", async (req, res) => {
     }
     res.status(200).json(userData);
   } catch (error) {
-    console.log(err);
-    res.status(500).json(err);
+    console.log(error);
+    res.status(500).json(error);
   }
 });
 
@@ -64,8 +64,8 @@ router.post("/", async (req, res) => {
     const newUser = await User.create(newUser);
     res.status(200).json(newUser);
   } catch (error) {
-    console.log(err);
-    res.status(500).json(err);
+    console.log(error);
+    res.status(500).json(error);
   }
 });
 
@@ -93,8 +93,9 @@ router.post("/login", async (req, res) => {
       req.session.loggedIn = true;
     });
     res.status(200).json({ user: userData, message: "You are now logged in!" });
-  } catch (err) {
-    res.status(500).json(err);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(error);
   }
 });
 
@@ -125,7 +126,10 @@ router.delete("/:id", async (req, res) => {
         .json({ message: `No user found with id: ${req.params.id}` });
     }
     res.status(200).json(userData);
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(error);
+  }
 });
 
 module.exports = router;

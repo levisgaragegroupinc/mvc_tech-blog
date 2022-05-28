@@ -21,8 +21,8 @@ router.get("/", async (req, res) => {
     });
     res.status(200).json(comments);
   } catch (error) {
-    console.log(err);
-    res.status(500).json(err);
+    console.log(error);
+    res.status(500).json(error);
   }
 });
 
@@ -37,8 +37,8 @@ router.post("/", withAuth, async (req, res) => {
       });
       res.status(200).json(newComment);
     } catch (error) {
-      console.log(err);
-      res.status(500).json(err);
+      console.log(error);
+      res.status(500).json(error);
     }
   }
 });
@@ -57,7 +57,10 @@ router.delete("/:id", withAuth, async (req, res) => {
         .json({ message: `No comment found with id: ${req.params.id}` });
     }
     res.status(200).json(commentData);
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(error);
+  }
 });
 
 module.exports = router;
