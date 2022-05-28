@@ -59,9 +59,13 @@ router.get("/:id", async (req, res) => {
 // CREATE NEW USER ROUTE
 router.post("/", async (req, res) => {
   try {
-    const newUserRequest = req.body;
-    newUserRequest.password = await bcrypt.has(req.body.password, 10);
-    const newUser = await User.create(newUser);
+    const newUser = await User.create({
+      username: req.body.username,
+      password: req.body.password,
+    });
+    req.session.save(() => {
+      req.session.loggedIn = true;
+    });
     res.status(200).json(newUser);
   } catch (error) {
     console.log(error);
