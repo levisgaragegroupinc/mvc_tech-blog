@@ -12,11 +12,11 @@ Install Node: [Node.js](https://nodejs.org/en/download/).
 
 Install Express: [Express.js](https://www.npmjs.com/package/express).
 
-Install Express-session: [Express-session]().
+Install Express-session: [Express-session](https://www.npmjs.com/package/express-session).
 
 Install Sequalize: [Sequalize.js](https://www.npmjs.com/package/sequelize).
 
-Install Connect-session-sequalize: [Connect-session-sequalize]().
+Install Connect-session-sequalize: [Connect-session-sequalize](https://www.npmjs.com/package/connect-session-sequelize).
 
 Install MySQL2 package: [MySQL2](https://www.npmjs.com/package/mysql2).
 

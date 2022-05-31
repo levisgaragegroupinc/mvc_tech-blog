@@ -4,17 +4,19 @@
             <h2>{{title}}</h2>
         </div>    
         <div class="post-header">
-            {{!-- <h2>{{format_date created_at}}</h2> --}}
-            <h2>{{created_at}}</h2>
-            <a href="/edit/"{{id}}>
-                <h3>{{comment.length}}</h3>
+            <h2>{{format_date createdAt}}</h2>
+            <a class="post-header" href="/edit/"{{id}}>
+                <h3>{{comments.length}}</h3>
                 <h3>Comments</h3>
             </a>
         </div>
     </div>
     <p class="post-content">{{post_txt}}</p>
 </article>
-{{> post-comments-details}}
+
+{{#each comments as |comments|}}
+{{> post-comments-details comments}}
+{{/each}}
 
 {{#if loggedIn}}
 <div>

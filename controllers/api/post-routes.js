@@ -22,8 +22,10 @@ router.get("/", async (req, res) => {
       res.status(404).json({ message: `No posts found.` });
     }
     const posts = allPostData.map((post) => {
-      post.get({ plain: true });
+      // post.get({ plain: true });
+      // console.log("Here is the post", post.post);
     });
+
     res.status(200).json(posts);
   } catch (error) {
     console.log(error);

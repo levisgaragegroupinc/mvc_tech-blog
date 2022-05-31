@@ -6,7 +6,6 @@ const sequelize = require("../config/connection"); //might not need this here.
 router.get("/", async (req, res) => {
   try {
     const allPostData = await Post.findAll({
-      attributes: ["id", "title", "created_at", "post_txt"],
       include: [
         {
           model: Comment,
@@ -18,12 +17,11 @@ router.get("/", async (req, res) => {
         },
       ],
     });
+
     if (!allPostData) {
       res.status(404).json({ message: `No posts found.` });
     }
-    const posts = allPostData.map((post) => {
-      post.get({ plain: true });
-    });
+    const posts = allPostData.map((post) => post.get({ plain: true }));
     res.render("homepage", {
       posts,
       loggedIn: req.session.loggedIn,
@@ -55,30 +53,28 @@ router.get("/signup", (req, res) => {
 // GET ONE POST BY ID AND RENDER SINGLE POST
 router.get("/post/:id", async (req, res) => {
   try {
-    const postData = await Post.findByPk({
-      where: {
-        id: req.params.id,
-      },
-      attributes: ["id", "title", "created_at", "post_txt"],
+    const commentData = await Post.findByPk(req.params.id, {
       include: [
         {
           model: Comment,
           attributes: ["id", "user_id", "post_id", "comment_txt", "created_at"],
-        },
-        {
-          model: User,
-          attributes: ["username"],
+          include: [
+            {
+              model: User,
+              attributes: ["username"],
+            },
+          ],
         },
       ],
     });
-    if (!postData) {
+    if (!commentData) {
       res
         .status(404)
         .json({ message: `No post with ID ${req.params.id} found.` });
     }
-    const post = postData.get({ plain: true });
+    const comments = commentData.get({ plain: true });
     res.render("post-comments", {
-      post,
+      ...comments,
       loggedIn: req.session.loggedIn,
     });
   } catch (error) {
