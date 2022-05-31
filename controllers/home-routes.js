@@ -2,7 +2,7 @@ const router = require("express").Router();
 const { Post, User, Comment } = require("../models");
 const sequelize = require("../config/connection"); //might not need this here.
 
-// GET ALL POSTS AND RENDER
+// GET ALL POSTS AND RENDER. TESTED!
 router.get("/", async (req, res) => {
   try {
     const allPostData = await Post.findAll({
@@ -50,7 +50,7 @@ router.get("/signup", (req, res) => {
   res.render("signup");
 });
 
-// GET ONE POST BY ID AND RENDER SINGLE POST
+// GET ONE POST BY ID AND RENDER SINGLE POST. TESTED!
 router.get("/post/:id", async (req, res) => {
   try {
     const commentData = await Post.findByPk(req.params.id, {

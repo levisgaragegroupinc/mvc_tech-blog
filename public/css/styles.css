@@ -122,7 +122,6 @@ p {
 /* POSTS */
 article {
     margin: 12px 40px;
-
 }
 
 .post-header {
@@ -145,6 +144,20 @@ textarea {
     resize: none;
 }
 
+.comment-header-space {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.comment-div {
+    margin: 12px 40px;
+}
+
+.comment-content {
+    border: solid 1px var(--light-green);
+    border-radius: 6px;
+    background-color: var(--light-blue);
+}
 
 
 /* FORM STYLES */
