@@ -1,8 +1,7 @@
 const router = require("express").Router();
 const { Post, User, Comment } = require("../models");
-const sequelize = require("../config/connection"); //might not need this here.
 
-// GET ALL POSTS AND RENDER. TESTED!
+// GET ALL POSTS AND RENDER.
 router.get("/", async (req, res) => {
   try {
     const allPostData = await Post.findAll({
@@ -24,7 +23,7 @@ router.get("/", async (req, res) => {
     const posts = allPostData.map((post) => post.get({ plain: true }));
     res.render("homepage", {
       posts,
-      logged_in: req.session.logged_in,
+      loggedIn: req.session.loggedIn,
     });
   } catch (error) {
     console.log(error);
@@ -32,18 +31,18 @@ router.get("/", async (req, res) => {
   }
 });
 
-// GET LOGIN AND RENDER LOGIN
+// // GET LOGIN AND RENDER LOGIN
 router.get("/login", (req, res) => {
-  if (req.session.logged_in) {
+  if (req.session.loggedIn) {
     res.redirect("/");
     return;
   }
   res.render("login");
 });
 
-// GET SIGNUP AND RENDER SIGNUP
+// // GET SIGNUP AND RENDER SIGNUP
 router.get("/signup", (req, res) => {
-  if (req.session.logged_in) {
+  if (req.session.loggedIn) {
     res.redirect("/");
     return;
   }
@@ -75,7 +74,7 @@ router.get("/post/:id", async (req, res) => {
     const comments = commentData.get({ plain: true });
     res.render("post-comments", {
       ...comments,
-      logged_in: req.session.logged_in,
+      loggedIn: req.session.loggedIn,
     });
   } catch (error) {
     console.log(error);
@@ -83,6 +82,6 @@ router.get("/post/:id", async (req, res) => {
   }
 });
 
-router.get();
+// router.get();
 
 module.exports = router;
