@@ -24,7 +24,7 @@ router.get("/", async (req, res) => {
     const posts = allPostData.map((post) => post.get({ plain: true }));
     res.render("homepage", {
       posts,
-      loggedIn: req.session.loggedIn,
+      logged_in: req.session.logged_in,
     });
   } catch (error) {
     console.log(error);
@@ -34,7 +34,7 @@ router.get("/", async (req, res) => {
 
 // GET LOGIN AND RENDER LOGIN
 router.get("/login", (req, res) => {
-  if (req.session.loggedIn) {
+  if (req.session.logged_in) {
     res.redirect("/");
     return;
   }
@@ -43,7 +43,7 @@ router.get("/login", (req, res) => {
 
 // GET SIGNUP AND RENDER SIGNUP
 router.get("/signup", (req, res) => {
-  if (req.session.loggedIn) {
+  if (req.session.logged_in) {
     res.redirect("/");
     return;
   }
@@ -75,12 +75,14 @@ router.get("/post/:id", async (req, res) => {
     const comments = commentData.get({ plain: true });
     res.render("post-comments", {
       ...comments,
-      loggedIn: req.session.loggedIn,
+      logged_in: req.session.logged_in,
     });
   } catch (error) {
     console.log(error);
     res.status(500).json(error);
   }
 });
+
+router.get();
 
 module.exports = router;

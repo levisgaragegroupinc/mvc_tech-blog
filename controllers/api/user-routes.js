@@ -83,7 +83,7 @@ router.post("/", async (req, res) => {
       password: req.body.password,
     });
     req.session.save(() => {
-      req.session.loggedIn = true;
+      req.session.logged_in = true;
     });
     res.status(200).json(newUser);
   } catch (error) {
@@ -92,7 +92,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-// USER LOGIN ROUTE
+// USER LOGIN ROUTE // REFACTOR
 router.post("/login", async (req, res) => {
   try {
     const userData = await User.findOne({
@@ -102,20 +102,17 @@ router.post("/login", async (req, res) => {
       res.status(404).json({ message: "Login failed. Please try again!" });
       return;
     }
-    const validPassword = await bcrypt.compare(
-      req.body.password,
-      userData.password
-    );
+    const validPassword = await userData.checkPassword(req.body.password);
+
     if (!validPassword) {
       res.status(400).json({ message: "Login failed. Please try again!" });
       return;
     }
     req.session.save(() => {
       req.session.user_id = userData.id;
-      req.session.username = userData.username;
-      req.session.loggedIn = true;
+      req.session.logged_in = true;
     });
-    res.status(200).json({ user: userData, message: "You are now logged in!" });
+    res.json({ user: userData, message: "You are now logged in!" });
   } catch (error) {
     console.log(error);
     res.status(500).json(error);
@@ -124,9 +121,9 @@ router.post("/login", async (req, res) => {
 
 // USER UPDATE ROUTE
 
-// USER LOGOUT ROUTE
+// USER LOGOUT ROUTE. REFACTOR
 router.post("/logout", (req, res) => {
-  if (req.session.loggedIn) {
+  if (req.session.logged_in) {
     req.session.destroy(() => {
       res.status(204).end();
     });
