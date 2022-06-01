@@ -103,12 +103,12 @@ router.post("/login", async (req, res) => {
       return;
     }
 
-    const validPassword = await bcrypt.compare(
-      req.body.password,
-      userData.password
-    );
+    // const validPassword = await bcrypt.compare(
+    //   req.body.password,
+    //   userData.password
+    // );
 
-    // const validPassword = await userData.checkPassword(req.body.password);
+    const validPassword = await userData.checkPassword(req.body.password);
 
     if (!validPassword) {
       res.status(400).json({ message: "Login failed. Please try again!" });
@@ -116,10 +116,10 @@ router.post("/login", async (req, res) => {
     }
     req.session.save(() => {
       req.session.user_id = userData.id;
-      req.session.username = userData.username;
+      // req.session.username = userData.username;
       req.session.loggedIn = true;
     });
-    res.status(200).json({ user: userData, message: "You are now logged in!" });
+    res.json({ user: userData, message: "You are now logged in!" });
   } catch (error) {
     console.log(error);
     res.status(500).json(error);
