@@ -26,9 +26,7 @@ router.get("/", withAuth, async (req, res) => {
     if (!allUserPosts) {
       res.status(404).json({ message: `No posts found.` });
     }
-    const userPosts = allUserPosts.map((post) => {
-      post.get({ plain: true });
-    });
+    const userPosts = allUserPosts.map((post) => post.get({ plain: true }));
     res.render("dashboard", { userPosts, loggedIn: true });
   } catch (error) {
     console.log(error);
