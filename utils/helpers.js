@@ -1,5 +1,4 @@
-module.exports = {
-  format_date: (date) => {
-    return date.toLocaleDateString();
-  },
-};
+const withAuth = require("./auth");
+const format_date = require("./format-date");
+
+module.exports = { withAuth, format_date };
