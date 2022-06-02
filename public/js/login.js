@@ -15,6 +15,7 @@ const loginForm = async (event) => {
 
     if (response.ok) {
       document.location.replace("/");
+      // window.location.redirect("/");
     } else {
       alert(response.statusText);
     }
