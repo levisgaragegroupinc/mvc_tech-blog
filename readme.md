@@ -28,15 +28,17 @@ Install Handlebars: [Handlerbars](https://www.npmjs.com/package/handlebars).
 
 # Appearance
 
-![Deployed page](./assets/images/image_name.png)
+![Appearance](./public/images/tech-01.png)
+
+![Appearance2](./public/images/tech-02.png)
 
 # Usage
 
 Use this application to create a blog site with user comments and encrypted user logins.
 
-## Link to video demonstration
+# Live page hosted on heroku
 
-Video demo: [GDrive Link]()
+Link to live page: [Live page](https://git.heroku.com/mvc-technology-blog.git).
 
 ## Credits
 
