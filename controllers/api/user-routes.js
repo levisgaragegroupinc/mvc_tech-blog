@@ -4,6 +4,8 @@ const withAuth = require("../../utils/auth");
 
 // GET ALL USERS ROUTE. /api/users
 router.get("/", async (req, res) => {
+  console.log("Get all users.");
+  res.json("All users");
   try {
     const allUsersData = await User.findAll({
       attributes: { exclude: ["password"] },
@@ -94,6 +96,7 @@ router.post("/", async (req, res) => {
 
 // USER LOGIN ROUTE
 router.post("/login", async (req, res) => {
+  console.log("user login route");
   try {
     const userData = await User.findOne({
       where: { username: req.body.username },
