@@ -117,15 +117,15 @@ router.post("/login", async (req, res) => {
     //   res.status(400).json({ message: "Login failed. Please try again!" });
     //   return;
     // }
+    // req.session.loggedIn = true;
+
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.username = userData.username;
-      // req.session.loggedIn = true;
+      req.session.loggedIn = true;
+      console.log("req.session", req.session);
+      res.json({ user: userData, message: "You are now logged in!" });
     });
-    req.session.loggedIn = true;
-
-    console.log("req.session", req.session);
-    res.json({ user: userData, message: "You are now logged in!" });
   } catch (error) {
     console.log(error);
     res.status(500).json(error);
@@ -136,7 +136,10 @@ router.post("/login", async (req, res) => {
 
 // USER LOGOUT ROUTE.
 router.post("/logout", (req, res) => {
+  console.log("this is the logout route.");
+  console.log("This is the session on the logout route.", req.session);
   if (req.session.loggedIn) {
+    // req.session.loggedIn = false;
     req.session.destroy(() => {
       res.status(204).end();
     });
