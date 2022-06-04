@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { Post, User, Comment } = require("../../models");
-// const withAuth = require("../../utils/auth");
+const withAuth = require("../../utils/auth");
 
 // GET ALL USERS ROUTE. /api/users
 router.get("/", async (req, res) => {
@@ -110,8 +110,8 @@ router.post("/login", async (req, res) => {
     console.log("password on user routes.js", req.body.password);
     console.log(userData);
 
-    // const validPassword = await userData.checkPassword(req.body.password);
-    // console.log("is password valid?", validPassword);
+    const validPassword = await userData.checkPassword(req.body.password);
+    console.log(validPassword);
 
     // if (!validPassword) {
     //   res.status(400).json({ message: "Login failed. Please try again!" });
@@ -120,8 +120,11 @@ router.post("/login", async (req, res) => {
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.username = userData.username;
-      req.session.loggedIn = true;
+      // req.session.loggedIn = true;
     });
+    req.session.loggedIn = true;
+
+    console.log("req.session", req.session);
     res.json({ user: userData, message: "You are now logged in!" });
   } catch (error) {
     console.log(error);

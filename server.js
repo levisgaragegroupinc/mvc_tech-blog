@@ -12,9 +12,23 @@ const PORT = process.env.PORT || 3001;
 
 const hbs = exphbs.create({ helpers });
 
+// const sess = {
+//   secret: "Super secret secret",
+//   loggedIn: false,
+//   resave: false,
+//   saveUninitialized: true,
+//   store: new SequelizeStore({
+//     db: sequelize,
+//   }),
+// };
+
 const sess = {
   secret: "Super secret secret",
-  loggedIn: false,
+  cookie: {
+    maxAge: 360000,
+    httpOnly: true,
+    sameSite: "strict",
+  },
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
@@ -31,9 +45,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
-app.get("/sanity", (req, res) => {
-  res.json("check");
-});
+// app.get("/sanity", (req, res) => {
+//   res.json("check");
+// });
 
 app.use(routes);
 
