@@ -6,6 +6,7 @@ const withAuth = require("../utils/helpers");
 router.get("/", withAuth, async (req, res) => {
   try {
     const allUserPosts = await Post.findAll({
+      include: User,
       where: {
         user_id: req.session.user_id,
       },
