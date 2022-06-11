@@ -84,7 +84,7 @@ router.get("/", withAuth, async (req, res) => {
 // GET ONE POST EDIT FORM AND RENDER
 router.get("/edit/:id", withAuth, async (req, res) => {
   try {
-    const postData = await Post.findByPk({
+    const postData = await Post.findOne({
       where: {
         id: req.params.id,
       },
