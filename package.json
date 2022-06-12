@@ -5,7 +5,11 @@
     "main": "server.js",
     "scripts": {
       "start": "node server.js",
-      "seed": "node seeds/seeds.js"
+      "seed": "node /seeds.js"
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/levisgaragegroupinc/mvc_tech-blog" 
     },
     "keywords": [],
     "author": "",
