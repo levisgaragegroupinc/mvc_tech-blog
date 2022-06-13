@@ -122,6 +122,8 @@ p {
 /* POSTS */
 article {
     margin: 12px 40px;
+    min-width: 90vw;
+    max-width: 90vw;
 }
 
 .post-header {
@@ -151,6 +153,8 @@ textarea {
 
 .comment-div {
     margin: 12px 40px;
+    min-width: 90vw;
+    max-width: 90vw;
 }
 
 .comment-content {
