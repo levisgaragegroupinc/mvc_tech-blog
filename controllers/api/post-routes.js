@@ -64,12 +64,12 @@ router.get("/:id", async (req, res) => {
 });
 
 // CREATE NEW POST ROUTE
-router.put("/", withAuth, async (req, res) => {
+router.post("/", withAuth, async (req, res) => {
   if (req.session) {
     try {
       const newPost = await Post.create({
         title: req.body.title,
-        post_txt: req.body.post_txt,
+        post_txt: req.body.content,
         user_id: req.session.user_id,
       });
       res.status(200).json(newPost);

@@ -106,23 +106,23 @@ router.post("/login", async (req, res) => {
       return;
     }
 
-    console.log("username on user routes.js", req.body.username);
-    console.log("password on user routes.js", req.body.password);
-    console.log(userData);
+    // console.log("username on user routes.js", req.body.username);
+    // console.log("password on user routes.js", req.body.password);
+    // console.log(userData);
 
-    // const validPassword = await userData.checkPassword(req.body.password);
-    // console.log("is password valid?", validPassword);
+    const validPassword = await userData.checkPassword(req.body.password);
+    console.log(validPassword);
 
-    // if (!validPassword) {
-    //   res.status(400).json({ message: "Login failed. Please try again!" });
-    //   return;
-    // }
+    if (!validPassword) {
+      res.status(400).json({ message: "Login failed. Please try again!" });
+      return;
+    }
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.username = userData.username;
       req.session.loggedIn = true;
+      res.json({ user: userData, message: "You are now logged in!" });
     });
-    res.json({ user: userData, message: "You are now logged in!" });
   } catch (error) {
     console.log(error);
     res.status(500).json(error);
