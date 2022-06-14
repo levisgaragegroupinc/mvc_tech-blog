@@ -4,15 +4,17 @@ const newCommentForm = async (event) => {
   const comment_txt = document
     .querySelector('textarea[name="comments"]')
     .value.trim();
+  console.log(comment_txt);
 
-  const id = window.location.toString().split("/")[
+  const post_id = window.location.toString().split("/")[
     window.location.toString().split("/").length - 1
   ];
+  console.log(post_id);
 
-  if (comment_txt && id) {
+  if (comment_txt && post_id) {
     const response = await fetch("/api/comments", {
       method: "POST",
-      body: JSON.stringify({ id, comment_txt }),
+      body: JSON.stringify({ post_id, comment_txt }),
       headers: { "Content-Type": "application/json" },
     });
 
