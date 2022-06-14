@@ -144,6 +144,8 @@ article {
 /* COMMENTS */
 textarea {
     resize: none;
+    min-width: 60vw;
+    max-width: 60vw;
 }
 
 .comment-header-space {
