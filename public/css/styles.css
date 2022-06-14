@@ -165,6 +165,10 @@ textarea {
     background-color: var(--light-blue);
 }
 
+#comment {
+    min-width: 90vw;
+    max-width: 90vw;
+}
 
 /* FORM STYLES */
 
