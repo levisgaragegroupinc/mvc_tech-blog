@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const { Post, User, Comment } = require("../../models");
-// const withAuth = require("../../utils/auth");
 
 // GET ALL USERS ROUTE. /api/users
 router.get("/", async (req, res) => {
@@ -22,25 +21,6 @@ router.get("/", async (req, res) => {
     res.status(500).json(error);
   }
 });
-
-// TEST ALL USERS ROUTE
-// router.get("/", async (req, res) => {
-//   try {
-//     const allUsersData = await User.findAll({
-//       attributes: { exclude: ["password"] },
-//     });
-//     if (!allUsersData) {
-//       res.status(404).json({ message: `No users found.` });
-//     }
-//     // const users = allUsersData.map((user) => {
-//     //   user.get({ plain: true });
-//     // });
-//     res.status(200).json(allUsersData);
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).json(error);
-//   }
-// });
 
 // GET SINGLE USER BY ID ROUTE. /api/users/1
 router.get("/:id", async (req, res) => {
@@ -105,11 +85,6 @@ router.post("/login", async (req, res) => {
       res.status(404).json({ message: "Login failed. Please try again!" });
       return;
     }
-
-    // console.log("username on user routes.js", req.body.username);
-    // console.log("password on user routes.js", req.body.password);
-    // console.log(userData);
-
     const validPassword = await userData.checkPassword(req.body.password);
     console.log(validPassword);
 
@@ -129,10 +104,10 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// USER UPDATE ROUTE
-
 // USER LOGOUT ROUTE.
 router.post("/logout", (req, res) => {
+  // console.log("this is the logout route.");
+  // console.log("This is the session on the logout route.", req.session);
   if (req.session.loggedIn) {
     req.session.destroy(() => {
       res.status(204).end();

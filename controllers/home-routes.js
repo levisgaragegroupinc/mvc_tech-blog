@@ -21,6 +21,8 @@ router.get("/", async (req, res) => {
       res.status(404).json({ message: `No posts found.` });
     }
     const posts = allPostData.map((post) => post.get({ plain: true }));
+    console.log("check session on homepage:", req.session);
+
     res.render("homepage", {
       posts,
       loggedIn: req.session.loggedIn,

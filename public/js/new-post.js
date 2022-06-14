@@ -3,6 +3,8 @@ const newPostForm = async (event) => {
 
   const title = document.querySelector('textarea[name="title"]').value;
   const content = document.querySelector('textarea[name="post-content"]').value;
+  // console.log("Title new post route:", title);
+  // console.log("Content new post route:", content);
 
   if (title && content) {
     const response = await fetch("/api/posts", {

@@ -32,6 +32,7 @@ const withAuth = require("../utils/auth");
 //   }
 // });
 
+
 // Dashboard Test Code
 router.get("/", withAuth, async (req, res) => {
   const post_data = await Post.findAll({
@@ -45,6 +46,40 @@ router.get("/", withAuth, async (req, res) => {
   });
   res.render("dashboard", { posts: posts, loggedIn: req.session.loggedIn });
 });
+
+// // TEST CODE
+// router.get("/", withAuth, (req, res) => {
+//   Post.findAll({
+//     where: {
+//       // use the ID from the session
+//       user_id: req.session.user_id,
+//     },
+//     attributes: ["id", "title", "created_at", "post_txt"],
+//     include: [
+//       {
+//         model: Comment,
+//         attributes: ["id", "user_id", "post_id", "comment_txt", "created_at"],
+//         include: {
+//           model: User,
+//           attributes: ["username"],
+//         },
+//       },
+//       {
+//         model: User,
+//         attributes: ["username"],
+//       },
+//     ],
+//   })
+//     .then((dbPostData) => {
+//       // serialize data before passing to template
+//       const posts = dbPostData.map((post) => post.get({ plain: true }));
+//       res.render("dashboard", { posts, loggedIn: true });
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//       res.status(500).json(err);
+//     });
+// });
 
 // GET ONE POST EDIT FORM AND RENDER
 // router.get("/edit/:id", withAuth, async (req, res) => {
