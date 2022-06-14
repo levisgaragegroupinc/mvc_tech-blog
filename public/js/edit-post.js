@@ -1,6 +1,5 @@
 const editPostForm = async (event) => {
   event.preventDefault();
-
   const title = document.querySelector('textarea[name="title"]').value;
   const post_txt = document.querySelector(
     'textarea[name="post-content"]'
@@ -8,11 +7,10 @@ const editPostForm = async (event) => {
   const id = window.location.toString().split("/")[
     window.location.toString().split("/").length - 1
   ];
-
   if (title && post_txt && id) {
-    const response = await fetch("/api/posts/${id}", {
-      method: "POST",
-      body: JSON.stringify({ title, post_txt }),
+    const response = await fetch("/api/posts/" + id, {
+      method: "PUT",
+      body: JSON.stringify({ title: title, post_txt: post_txt }),
       headers: { "Content-Type": "application/json" },
     });
 
