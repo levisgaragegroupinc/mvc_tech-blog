@@ -42,4 +42,4 @@ Link to live page: [Live page](https://git.heroku.com/mvc-technology-blog.git).
 
 ## Credits
 
-Credits to Node.js, Express.js, Express-sessions, Sequalize, Connect-session-sequalize, MySQL, dotenv, bycrypt, handlebars, and Heroku for hosting the site.
+Credits to Node.js, Express.js, Express-sessions, Sequalize, Connect-session-sequalize, MySQL, dotenv, bycrypt, handlebars, and to Heroku for hosting the site.
