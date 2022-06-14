@@ -38,7 +38,7 @@ Use this application to create a blog site with user comments and encrypted user
 
 # Live page hosted on heroku
 
-Link to live page: [Live page](https://git.heroku.com/mvc-technology-blog.git).
+Link to live page: [Live page](https://mvc-technology-blog.herokuapp.com/).
 
 ## Credits
 

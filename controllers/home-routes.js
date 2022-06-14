@@ -31,7 +31,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// // GET LOGIN AND RENDER LOGIN
+// GET LOGIN AND RENDER LOGIN
 router.get("/login", (req, res) => {
   if (req.session.loggedIn) {
     res.redirect("/");
@@ -40,7 +40,7 @@ router.get("/login", (req, res) => {
   res.render("login");
 });
 
-// // GET SIGNUP AND RENDER SIGNUP
+// GET SIGNUP AND RENDER SIGNUP
 router.get("/signup", (req, res) => {
   if (req.session.loggedIn) {
     res.redirect("/");

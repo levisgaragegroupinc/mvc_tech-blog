@@ -106,8 +106,6 @@ router.post("/login", async (req, res) => {
 
 // USER LOGOUT ROUTE.
 router.post("/logout", (req, res) => {
-  // console.log("this is the logout route.");
-  // console.log("This is the session on the logout route.", req.session);
   if (req.session.loggedIn) {
     req.session.destroy(() => {
       res.status(204).end();
